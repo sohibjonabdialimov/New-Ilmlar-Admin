@@ -1,0 +1,68 @@
+/* @import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #dfecfa;
+  --white: #ffffff;
+}
+body {
+  background-color: white;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+button:focus {
+  outline: none;
+  border: none;
+}
+.btn {
+  border-radius: 100px;
+  background-color: #1d7afc;
+  color: #fff;
+  text-align: center;
+  font-weight: 400;
+  transition: all 0.5s;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  background-color: #fff;
+  border: 1px solid #1d7afc;
+  color: #1d7afc;
+}
+.title {
+  color: #1b1d20;
+  font-size: 28px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  line-height: 32px;
+}
+
+
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 780px) {
+}
+@media only screen and (max-width: 540px) {
+
+}
+@media only screen and (max-width: 420px) {
+  
+}
