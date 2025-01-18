@@ -2,8 +2,11 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { ComponentList } from "./router/ComponentList";
 import LoginPage from "./views//auth/LoginPage";
 import LoginLayout from "./layout/AuthLayout";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { verifyToken } from "./services/verifyToken";
+import Loading from "./utils/Loading";
+import ExtraLayout from "./layout/ExtraLayout";
+import TeacherInfo from "./views/teacher-info/TeacherInfo";
 
 const App = () => {
   const navigate = useNavigate();
@@ -22,24 +25,17 @@ const App = () => {
           </LoginLayout>
         }
       />
-      {/* <Route
-        key={"courses/:id"}
-        path={"/courses/:id"}
+        <Route
+        key={"teacher-info/:id"}
+        path={"/teacher-info/:id"}
         element={
-          <DesktopLayout>
-            <CourseInfo />
-          </DesktopLayout>
+          <Suspense fallback={<Loading />}>
+            <ExtraLayout>
+              <TeacherInfo />
+            </ExtraLayout>
+          </Suspense>
         }
-      /> */}
-      {/* <Route
-        key={"lessons/:id"}
-        path={"/lessons/:id"}
-        element={
-          <DesktopLayout>
-            <Lessons />
-          </DesktopLayout>
-        }
-      /> */}
+      />
       {ComponentList()}
     </Routes>
   );

@@ -1,34 +1,35 @@
 import { Controller, useForm } from "react-hook-form";
 import { Form, Input, message } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-// import axiosT from "../../../services/axios";
+import {  useNavigate } from "react-router-dom";
 import auth from "../../assets/images/auth_img.png";
 import "./auth.css";
+import { GetUsersUserme, PostUsersLogin } from "../../services/api";
+import { useContext } from "react";
+import { ProfileContext } from "../../context/ProfileProvider";
 const LoginPage = () => {
   const { control, getValues } = useForm();
-  const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
-
+  const { setUserData } = useContext(ProfileContext);
+  const navigate = useNavigate();
   const submitHandler = async () => {
-    // const login = getValues().LOGIN;
-    // axiosT
-    //   .post("/accounts/Token", login)
-    //   .then(({ data }) => {
-    //     localStorage.setItem("accessToken", data.access_token);
-    //     localStorage.setItem("refreshToken", data.refresh_token);
-    //     messageApi.open({
-    //       type: "info",
-    //       content: "Tizimga muvaffaqqiyatli kirildi",
-    //     });
-    //     navigate("/");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     messageApi.open({
-    //       type: "error",
-    //       content: "Bunday login parol mavjud emas",
-    //     });
-    //   });
+    const login = getValues().LOGIN;
+
+    try {
+      // Birinchi POST so'rovni jo'natamiz
+      const postResponse = await PostUsersLogin(login);
+      localStorage.setItem("token", postResponse.data.data.token);
+      await GetUsersUserme(postResponse?.data.data.token).then((response) => {
+        setUserData(response.data.data);
+        navigate("/");
+        localStorage.setItem("user-data", JSON.stringify(response.data.data));
+      });
+    } catch (err) {
+      console.log(err);
+      messageApi.open({
+        type: "error",
+        content: "Foydalanuvchi nomi yoki email xato kiritildi!",
+      });
+    }
   };
   return (
     <>
@@ -45,7 +46,7 @@ const LoginPage = () => {
             }}
           >
             <h1 className="text-main_color sm:text-[30px] text-2xl sm:leading-[50px] font-semibold text-center mb-5">
-              Yangi bilimlarni kashf qiling
+              Admin Login
             </h1>
             <div className="grid grid-cols-1 gap-2">
               <Form.Item
@@ -107,23 +108,6 @@ const LoginPage = () => {
               >
                 Kirish
               </button>
-              <div className="flex sm:items-center sm:justify-between items-start sm:flex-row flex-col gap-1">
-                <p className="text-center text-secondary_color text-sm font-normal">
-                  Shaxsiy sahifangiz yo'qmi?{" "}
-                  <Link
-                    className="cursor-pointer text-blue_color"
-                    to={"/register"}
-                  >
-                    Ro'yxatdan o'ting
-                  </Link>
-                </p>
-                <Link
-                  to={"/forget-password"}
-                  className="text-center text-blue_color text-sm font-normal"
-                >
-                  Parolni unitdingizmi?
-                </Link>
-              </div>
             </div>
           </Form>
         </div>

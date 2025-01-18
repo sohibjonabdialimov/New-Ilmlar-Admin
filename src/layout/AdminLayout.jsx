@@ -6,7 +6,6 @@ import {
   HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  ShoppingCartOutlined,
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -16,29 +15,19 @@ const layoutSidebar = [
   {
     key: "",
     icon: <HomeOutlined />,
-    label: "Foydalanuvchilar",
+    label: "O'qituvchilar",
   },
   {
-    key: "product",
+    key: "courses",
     icon: <CodeSandboxOutlined />,
     label: "Kurslar",
   },
 
   {
-    key: "import",
+    key: "finance",
     icon: <ShoppingOutlined />,
     label: "Moliya",
-  },
-  {
-    key: "sell",
-    icon: <ShoppingCartOutlined />,
-    label: "Arizalar",
-  },
-  // {
-  //   key: "couriers",
-  //   icon: <CarOutlined />,
-  //   label: "Yetkazib beruvchilar bo'limi",
-  // },
+  }
 ];
 const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
