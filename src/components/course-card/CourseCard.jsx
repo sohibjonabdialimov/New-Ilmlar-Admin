@@ -68,7 +68,10 @@ const CourseCard = ({ item, getCourses }) => {
             okText="Ha"
             cancelText="Yo'q"
           >
-            <Button type="primary">Kursni tasdiqlash</Button>
+            {
+              item?.is_verified ? <Button disabled type="text">Active</Button> : <Button type="primary">Kursni tasdiqlash</Button>
+            }
+            
           </Popconfirm>
           <Popconfirm
             title="Bloklash"

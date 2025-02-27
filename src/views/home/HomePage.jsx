@@ -90,7 +90,13 @@ const HomePage = () => {
                   okText="Ha"
                   cancelText="Yo'q"
                 >
-                  <Button type="primary">Tasdiqlash</Button>
+                  {item?.status_name === "active" ? (
+                    <Button disabled type="text">
+                      Active
+                    </Button>
+                  ) : (
+                    <Button type="primary">Tasdiqlash</Button>
+                  )}
                 </Popconfirm>
               ),
             };
@@ -139,7 +145,13 @@ const HomePage = () => {
                   okText="Ha"
                   cancelText="Yo'q"
                 >
-                  <Button type="primary">Tasdiqlash</Button>
+                  {item?.status_name === "active" ? (
+                    <Button disabled type="text">
+                      Active
+                    </Button>
+                  ) : (
+                    <Button type="primary">Tasdiqlash</Button>
+                  )}
                 </Popconfirm>
               ),
             };
@@ -148,7 +160,7 @@ const HomePage = () => {
       },
     }
   );
-  // console.log(data);
+  console.log(data);
 
   const handleSelectChange = (value) => {
     if (value !== "all") {

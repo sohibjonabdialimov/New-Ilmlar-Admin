@@ -10,7 +10,6 @@ const TeacherInfo = () => {
     GetTeacherAccount(id)
   );
   let teacher = account?.data.data;
-  console.log(teacher);
   
   return (
     <div className=" bg-bg_color rounded-2xl p-8 py-7">
